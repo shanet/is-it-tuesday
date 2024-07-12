@@ -1,0 +1,51 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:8.1.0'
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+  }
+}
+
+apply plugin: 'android'
+
+android {
+  compileSdkVersion 35
+  namespace "com.S201.tuesday"
+
+  defaultConfig {
+    applicationId "com.S201.tuesday"
+    minSdkVersion 1
+    targetSdkVersion 35
+    versionCode 9
+    versionName "1.1.4"
+  }
+
+  signingConfigs {
+    release {
+      storeFile file("tuesday.keystore")
+      storePassword "tuesday"
+      keyAlias "release.keystore"
+      keyPassword "tuesday"
+    }
+  }
+
+  lintOptions {
+    checkReleaseBuilds false
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      signingConfig signingConfigs.release
+    }
+  }
+}
